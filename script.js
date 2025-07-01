@@ -15,29 +15,6 @@ let officialWords;
 let spanWrap;
 let spanElem;
 
-const words = [
-    "apple", "banana", "cat", "dog", "elephant", "fish", "grape", "house", "ice", "juice",
-    "kite", "lion", "monkey", "nest", "orange", "pig", "queen", "rabbit", "sun", "tree",
-    "umbrella", "vase", "whale", "xylophone", "yogurt", "zebra", "air", "ball", "car", "door",
-    "egg", "frog", "goat", "hat", "ink", "jar", "key", "leaf", "moon", "net",
-    "owl", "pen", "quilt", "ring", "sock", "table", "unit", "van", "wall", "xray",
-    "yard", "zip", "ant", "book", "chalk", "dust", "ear", "fan", "gift", "hill",
-    "iron", "jam", "king", "lamp", "mat", "nail", "ocean", "pan", "quiet", "road",
-    "shoe", "tank", "user", "vine", "watch", "box", "yellow", "zero", "art", "blue",
-    "cloud", "drum", "earth", "flag", "gold", "home", "idea", "joke", "kite", "lake",
-    "milk", "name", "open", "plane", "queen", "rain", "star", "tent", "up", "voice",
-    "win", "axe", "yarn", "zoo", "animal", "baby", "cake", "dance", "energy", "fire",
-    "game", "hill", "island", "jungle", "kitten", "lemon", "mountain", "night", "oasis", "park",
-    "quietly", "river", "stone", "train", "under", "vacuum", "wave", "xenon", "yardstick", "zone",
-    "answer", "basket", "circle", "dollar", "engine", "forest", "garden", "hammer", "index", "jeans",
-    "knife", "ladder", "mirror", "needle", "object", "pencil", "question", "rocket", "spoon", "ticket",
-    "umbrella", "valley", "window", "xylem", "yawn", "zinc", "alley", "branch", "chain", "depth",
-    "elbow", "feather", "glove", "handle", "invite", "jacket", "kit", "limit", "member", "number",
-    "orbit", "pocket", "quiet", "report", "shelf", "tower", "use", "visit", "wheel", "exit",
-    "yield", "zone", "angle", "beach", "cliff", "desert", "engineer", "fence", "giant", "hook"
-];
-
-
 function wordGenerator(len) {
     const wordList = []
     for (let i = 0; i < len; i++) {
@@ -121,6 +98,12 @@ function init() {
     spanElem = document.querySelectorAll("span");
 }
 
+let words = []
+fetch("words.json")
+    .then(Response => Response.json())
+    .then(data => {
+        words = data;
+        init();
+    })
 
-init();
 startButton.onclick = run;
